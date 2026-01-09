@@ -1,9 +1,7 @@
 
 import React from 'react';
 import { View } from '../types';
-import { ArrowRight, Brain, Briefcase, GraduationCap, Star, PlayCircle, Sparkles, Crown, CheckCircle2, Cpu, Globe } from 'lucide-react';
-
-const LOGO_URL = 'https://i.ibb.co/3WfK91X/guidely-logo.png';
+import { ArrowRight, Brain, Briefcase, GraduationCap, Star, PlayCircle, Sparkles, Crown, CheckCircle2, Cpu, Globe, Lock, HeartPulse } from 'lucide-react';
 
 interface HomeViewProps {
   onNavigate: (view: View) => void;
@@ -35,11 +33,6 @@ const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
               <PlayCircle className="w-5 h-5" /> Nasıl Çalışır?
             </button>
           </div>
-        </div>
-        
-        {/* Large Background Logo Integration */}
-        <div className="absolute top-1/2 right-[-10%] -translate-y-1/2 hidden lg:block opacity-10 rotate-12">
-            <img src={LOGO_URL} alt="" className="w-96 h-auto" />
         </div>
         
         {/* Abstract background blobs */}
@@ -81,46 +74,109 @@ const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
 
       {/* Content Section */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <section className="lg:col-span-2 bg-white rounded-[40px] p-8 md:p-10 shadow-sm border border-gray-100 border-b-4 border-b-brand-100">
-          <div className="flex justify-between items-center mb-8 px-2">
-            <h2 className="text-2xl font-black text-gray-800 tracking-tight flex items-center gap-3">
-              <PlayCircle className="w-6 h-6 text-brand-primary" /> Canlı Yayınlar
-            </h2>
-            <span className="text-brand-primary text-sm font-black cursor-pointer hover:underline uppercase tracking-wider">Hepsini Gör</span>
-          </div>
-          <div className="space-y-5">
-            {[
-              { 
-                title: "Yapay Zeka ve Mühendislik", 
-                speaker: "Prof. Dr. Ahmet Y.", 
-                time: "Bugün 15:30", 
-                color: "bg-indigo-600",
-                icon: <Cpu className="w-8 h-8 text-white" />
-              },
-              { 
-                title: "Yurt Dışında Eğitim Bursları", 
-                speaker: "Dr. Elif Gök", 
-                time: "Yarın 11:00", 
-                color: "bg-brand-600",
-                icon: <Globe className="w-8 h-8 text-white" />
-              }
-            ].map((stream, i) => (
-              <div key={i} className="flex flex-col sm:flex-row items-start sm:items-center gap-5 p-6 hover:bg-brand-50 rounded-[32px] transition-all border border-transparent hover:border-brand-100 group cursor-pointer">
-                <div className={`w-20 h-20 rounded-3xl ${stream.color} flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform overflow-hidden`}>
-                  {stream.icon}
+        <div className="lg:col-span-2 space-y-8">
+          {/* Standard Live Streams */}
+          <section className="bg-white rounded-[40px] p-8 md:p-10 shadow-sm border border-gray-100 border-b-4 border-b-brand-100">
+            <div className="flex justify-between items-center mb-8 px-2">
+              <h2 className="text-2xl font-black text-gray-800 tracking-tight flex items-center gap-3">
+                <PlayCircle className="w-6 h-6 text-brand-primary" /> Canlı Yayınlar
+              </h2>
+              <span className="text-brand-primary text-sm font-black cursor-pointer hover:underline uppercase tracking-wider">Hepsini Gör</span>
+            </div>
+            <div className="space-y-5">
+              {[
+                { 
+                  title: "Yapay Zeka ve Mühendislik", 
+                  speaker: "Prof. Dr. Ahmet Y.", 
+                  time: "Bugün 15:30", 
+                  color: "bg-indigo-600",
+                  icon: <Cpu className="w-8 h-8 text-white" />
+                },
+                { 
+                  title: "Sağlık Sektöründe Gelecek ve Robotik Tıp", 
+                  speaker: "Doç. Dr. Selen G.", 
+                  time: "Yarın 11:00", 
+                  color: "bg-red-500",
+                  icon: <HeartPulse className="w-8 h-8 text-white" />
+                }
+              ].map((stream, i) => (
+                <div key={i} className="flex flex-col sm:flex-row items-start sm:items-center gap-5 p-6 hover:bg-brand-50 rounded-[32px] transition-all border border-transparent hover:border-brand-100 group cursor-pointer">
+                  <div className={`w-20 h-20 rounded-3xl ${stream.color} flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform overflow-hidden`}>
+                    {stream.icon}
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-black text-lg text-gray-800 mb-1 group-hover:text-brand-primary transition-colors">{stream.title}</h3>
+                    <p className="text-sm font-bold text-gray-400">{stream.speaker} • <span className="text-brand-primary">{stream.time}</span></p>
+                  </div>
+                  <button className="w-full sm:w-auto bg-gray-900 text-white px-6 py-3 rounded-2xl text-sm font-black hover:bg-brand-primary transition-all active:scale-95 shadow-xl shadow-gray-200">Katıl</button>
                 </div>
-                <div className="flex-1">
-                  <h3 className="font-black text-lg text-gray-800 mb-1 group-hover:text-brand-primary transition-colors">{stream.title}</h3>
-                  <p className="text-sm font-bold text-gray-400">{stream.speaker} • <span className="text-brand-primary">{stream.time}</span></p>
-                </div>
-                <button className="w-full sm:w-auto bg-gray-900 text-white px-6 py-3 rounded-2xl text-sm font-black hover:bg-brand-primary transition-all active:scale-95 shadow-xl shadow-gray-200">Katıl</button>
+              ))}
+            </div>
+          </section>
+
+          {/* Premium Exclusive Live Streams */}
+          <section className="bg-white rounded-[40px] p-8 md:p-10 shadow-sm border border-yellow-100 border-t-8 border-t-yellow-400">
+            <div className="flex justify-between items-center mb-8 px-2">
+              <h2 className="text-2xl font-black text-gray-800 tracking-tight flex items-center gap-3">
+                <Crown className="w-6 h-6 text-yellow-500" /> Premium Özel Yayınlar
+              </h2>
+              <div className="flex items-center gap-2">
+                <span className="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest">Sadece Premium</span>
               </div>
-            ))}
-          </div>
-        </section>
+            </div>
+            <div className="space-y-5">
+              {[
+                { 
+                  title: "Büyük Şirketlerde Staj Bulma Rehberi: CV'ni Nasıl Parlatırsın?", 
+                  category: "Kariyer & Gelişim",
+                  speaker: "İK Uzmanı: Merve Soylu", 
+                  time: "Pazartesi 20:00", 
+                  color: "bg-gradient-to-br from-yellow-400 to-yellow-600",
+                  icon: <Lock className="w-7 h-7 text-white" />
+                },
+                { 
+                  title: "Freelance Dünyasına Giriş: Öğrenciyken Dövizle Kazanmaya Başlamak", 
+                  category: "Finans & Kariyer",
+                  speaker: "Digital Nomad: Can Atay", 
+                  time: "Salı 21:30", 
+                  color: "bg-gradient-to-br from-yellow-500 to-yellow-700",
+                  icon: <Lock className="w-7 h-7 text-white" />
+                },
+                { 
+                  title: "2030'un Meslekleri: Gelecekte Hangi Uzmanlıklar Kazandıracak?", 
+                  category: "Gelecek Analizi",
+                  speaker: "Fütürist: Selin Gökdeniz", 
+                  time: "Çarşamba 19:00", 
+                  color: "bg-gradient-to-br from-yellow-500 to-orange-500",
+                  icon: <Star className="w-7 h-7 text-white" />
+                }
+              ].map((stream, i) => (
+                <div key={i} className="flex flex-col sm:flex-row items-start sm:items-center gap-5 p-6 hover:bg-yellow-50/50 rounded-[32px] transition-all border border-transparent hover:border-yellow-200 group cursor-pointer">
+                  <div className={`w-20 h-20 rounded-3xl ${stream.color} flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform overflow-hidden relative`}>
+                    {stream.icon}
+                    <div className="absolute inset-0 bg-black/10"></div>
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="text-[8px] font-black text-yellow-600 bg-yellow-50 px-2 py-0.5 rounded border border-yellow-100 uppercase tracking-widest">{stream.category}</span>
+                    </div>
+                    <h3 className="font-black text-lg text-gray-800 group-hover:text-yellow-600 transition-colors tracking-tight leading-tight mb-1">{stream.title}</h3>
+                    <p className="text-sm font-bold text-gray-400">{stream.speaker} • <span className="text-yellow-600 font-black">{stream.time}</span></p>
+                  </div>
+                  <button 
+                    onClick={() => onNavigate(View.Premium)}
+                    className="w-full sm:w-auto bg-yellow-500 text-white px-6 py-3 rounded-2xl text-sm font-black hover:bg-yellow-600 transition-all active:scale-95 shadow-xl shadow-yellow-100"
+                  >
+                    Kilitleri Aç
+                  </button>
+                </div>
+              ))}
+            </div>
+          </section>
+        </div>
 
         {/* Premium Promo Card */}
-        <div className="bg-[#1A1A1A] rounded-[40px] p-10 text-white flex flex-col shadow-2xl shadow-gray-300 border border-white/5 relative overflow-hidden group">
+        <div className="bg-[#1A1A1A] rounded-[40px] p-10 text-white flex flex-col shadow-2xl shadow-gray-300 border border-white/5 relative overflow-hidden group h-fit lg:sticky lg:top-8">
           <div className="w-20 h-20 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-[28px] p-5 mb-8 border border-white/20 shadow-xl group-hover:scale-110 transition-transform duration-500 flex items-center justify-center">
             <Crown className="w-10 h-10 text-white" />
           </div>
@@ -131,6 +187,7 @@ const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
           
           <ul className="space-y-4 mb-10">
             {[
+              "Premium Özel Canlı Yayınlar",
               "Birebir Mentorluk Desteği",
               "AI Destekli Kariyer Koçu",
               "Üniversite Başarı Verileri",

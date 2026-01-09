@@ -27,6 +27,17 @@ export interface DormInfo {
   amenities: string[];
 }
 
+export interface ClubCategory {
+  category: string;
+  clubs: string[];
+}
+
+export interface ScholarshipInfo {
+  name: string;
+  coverage: string;
+  description: string;
+}
+
 export interface University {
   id: string;
   name: string;
@@ -41,6 +52,11 @@ export interface University {
   clubCount?: number;
   activityLevel?: string;
   dorms?: DormInfo[];
+  activeClubs?: ClubCategory[];
+  majorEvents?: string[];
+  worldRanking?: string;
+  strongestAreas?: string[];
+  scholarships?: ScholarshipInfo[];
 }
 
 export interface AcademicMember {
@@ -66,6 +82,7 @@ export interface StudentVlog {
   grade: Grade;
   avatar: string;
   videoUrl: string;
+  thumbnailUrl?: string;
   description: string;
 }
 
@@ -76,6 +93,7 @@ export interface CampusVlog {
   studentName: string;
   avatar: string;
   videoUrl: string;
+  thumbnailUrl?: string;
   description: string;
 }
 

@@ -85,7 +85,7 @@ const SectorDetailView: React.FC<Props> = ({ sectorId, onBack, personalityResult
     comment: 'Bu alanda fark yaratmak istiyorsanız sadece teknik değil, yumuşak becerilerinizi de geliştirmelisiniz.',
     fieldOfWork: 'Akademik Danışmanlık',
     experienceYears: 20,
-    bio: '20 yılı aşkın süredir kariyer planlama ve sektörel uyum üzerine akademik çalışmalar yürütmektedir.',
+    bio: 'Kariyer planlama ve sektörel uyum üzerine 20 yılı aşkın süredir akademik çalışmalar yürütmekteyim.',
     videoUrl: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
     scoringSummary: [
       { label: 'İş Tatmini', score: 8 },
@@ -255,7 +255,6 @@ const SectorDetailView: React.FC<Props> = ({ sectorId, onBack, personalityResult
                    </p>
                 </div>
 
-                {/* Comparative Data Section */}
                 <div className="bg-indigo-50/50 p-6 rounded-[35px] border border-indigo-100 space-y-6">
                    <h4 className="text-[10px] font-black text-indigo-800 uppercase tracking-widest flex items-center gap-2">
                      <BarChart4 className="w-4 h-4" /> Sektörel Karşılaştırma Verileri
@@ -294,7 +293,6 @@ const SectorDetailView: React.FC<Props> = ({ sectorId, onBack, personalityResult
                    </div>
                 </div>
 
-                {/* Workplace & Companies Section */}
                 <div className="space-y-4">
                    <h4 className="text-[10px] font-black text-gray-400 uppercase tracking-widest flex items-center gap-2">
                      <Building2 className="w-4 h-4 text-brand-primary" /> Nerede Çalışır? (Sektörel Dağılım & Şirketler)
@@ -590,7 +588,11 @@ const SectorDetailView: React.FC<Props> = ({ sectorId, onBack, personalityResult
                     </h3>
                     <div className="prose prose-indigo prose-sm text-gray-500 font-medium leading-relaxed italic bg-gray-50 p-8 rounded-[35px] border border-gray-100 relative">
                        <Quote className="absolute -top-3 -left-3 w-10 h-10 text-brand-primary/10" />
-                       "{selectedExpert.comment} {selectedExpert.bio.split('.')[0]}. Videoda bahsettiğim üzere, sektördeki değişim hızına uyum sağlamak için temel disiplinlerden ödün vermemek gerekiyor."
+                       <div className="space-y-4">
+                        <p className="text-gray-600 leading-relaxed">
+                          {selectedExpert.comment} {selectedExpert.bio} Videomda da vurguladığım üzere; bu sektörde kariyer basamaklarını hızla tırmanmak istiyorsanız teknik donanımınızın yanı sıra adaptasyon yeteneğinizi de en üst seviyede tutmalısınız.
+                        </p>
+                       </div>
                     </div>
                   </div>
 
@@ -608,12 +610,12 @@ const SectorDetailView: React.FC<Props> = ({ sectorId, onBack, personalityResult
                 </div>
 
                 {/* Scoring Sidebar */}
-                <div className="bg-brand-50 p-8 rounded-[40px] border border-brand-100 space-y-8">
+                <div className="bg-brand-50 p-8 rounded-[40px] border border-brand-100 space-y-8 flex flex-col">
                   <h3 className="font-black text-brand-900 text-sm uppercase tracking-widest flex items-center gap-3">
                     <BarChart4 className="w-5 h-5" /> Video Puanlaması
                   </h3>
                   
-                  <div className="space-y-6">
+                  <div className="space-y-6 flex-1">
                     {selectedExpert.scoringSummary?.map((item, idx) => (
                       <div key={idx} className="space-y-2">
                         <div className="flex justify-between items-end">
@@ -630,9 +632,10 @@ const SectorDetailView: React.FC<Props> = ({ sectorId, onBack, personalityResult
                     ))}
                   </div>
 
-                  <div className="pt-6 border-t border-brand-200/50">
-                    <button className="w-full py-4 bg-gray-900 text-white rounded-2xl font-black uppercase tracking-widest text-[10px] flex items-center justify-center gap-3 hover:bg-brand-primary transition-all shadow-xl shadow-brand-900/10">
-                      <Linkedin className="w-4 h-4" /> Uzmana Soru Sor
+                  <div className="pt-6 border-t border-brand-200/50 mt-auto">
+                    <button className="w-full py-4 bg-gray-900 text-white rounded-2xl font-black uppercase tracking-widest text-[10px] flex items-center justify-center gap-2 hover:bg-brand-primary transition-all shadow-xl shadow-brand-900/10 group overflow-hidden px-2 min-h-[56px]">
+                      <Linkedin size={16} className="flex-shrink-0" /> 
+                      <span className="truncate whitespace-nowrap">LinkedIn Profiline Git</span>
                     </button>
                   </div>
                 </div>

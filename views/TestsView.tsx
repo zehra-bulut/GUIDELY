@@ -1,13 +1,15 @@
 
 import React, { useState } from 'react';
+import { View } from '../types';
 import { getCareerAdvice } from '../geminiService';
-import { Brain, Sparkles, CheckCircle2, Loader2, RefreshCcw } from 'lucide-react';
+import { Brain, Sparkles, CheckCircle2, Loader2, RefreshCcw, Target, Trophy, Star, ArrowRight } from 'lucide-react';
 
 interface Props {
   onComplete: (result: string) => void;
+  onNavigate: (view: View) => void;
 }
 
-const TestsView: React.FC<Props> = ({ onComplete }) => {
+const TestsView: React.FC<Props> = ({ onComplete, onNavigate }) => {
   const [step, setStep] = useState<'intro' | 'quiz' | 'loading' | 'result'>('intro');
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<string[]>([]);
@@ -217,24 +219,73 @@ const TestsView: React.FC<Props> = ({ onComplete }) => {
       )}
 
       {step === 'result' && (
-        <div className="bg-white rounded-[40px] p-10 border border-gray-100 shadow-xl space-y-8 animate-in zoom-in-95 duration-500">
-          <div className="flex items-center gap-4 p-5 bg-green-50 rounded-3xl border border-green-100">
-            <div className="p-3 bg-green-500 rounded-2xl">
-                <CheckCircle2 className="text-white w-6 h-6" />
+        <div className="space-y-8 animate-in zoom-in-95 duration-700">
+          {/* Status Badge */}
+          <div className="flex items-center gap-4 p-6 bg-brand-primary rounded-[35px] text-white shadow-2xl shadow-brand-200 border border-white/10">
+            <div className="p-3 bg-white/20 backdrop-blur-md rounded-2xl">
+                <Trophy className="text-white w-7 h-7" />
             </div>
-            <div>
-                <span className="font-black text-green-800 block text-sm">Analiz Tamamlandı!</span>
-                <span className="text-[10px] text-green-700/70 font-bold uppercase tracking-widest">Kişiselleştirilmiş Yol Haritan Hazır</span>
+            <div className="flex-1">
+                <span className="font-black block text-lg tracking-tight">Analiz Raporun Hazır!</span>
+                <span className="text-[10px] text-brand-100 font-black uppercase tracking-[0.2em] opacity-80">Sana Özel Kariyer Kimliği</span>
+            </div>
+            <Sparkles className="w-6 h-6 text-yellow-300 animate-pulse hidden sm:block" />
+          </div>
+
+          {/* Result Content Card */}
+          <div className="bg-white rounded-[50px] border border-gray-100 shadow-xl overflow-hidden">
+            <div className="p-1 text-center bg-gray-50 border-b border-gray-100">
+               <span className="text-[9px] font-black text-gray-400 uppercase tracking-widest py-2 block">Guidely AI Professional Analysis</span>
+            </div>
+            
+            <div className="p-8 md:p-12">
+              <div className="prose prose-indigo max-w-none">
+                <div className="text-gray-700 font-medium leading-[1.8] text-lg whitespace-pre-wrap selection:bg-brand-100 selection:text-brand-900">
+                  {/* We treat the raw text as blocks. Headers often contain numbering like "1." "2." */}
+                  {analysis?.split('\n').map((line, idx) => {
+                    const isHeader = line.match(/^\d+\.|\*\*|###|####/);
+                    if (isHeader) {
+                      return (
+                        <h3 key={idx} className="text-xl font-black text-gray-900 mt-10 mb-6 flex items-center gap-3 tracking-tight border-l-4 border-brand-primary pl-4 py-1">
+                          {line.replace(/\*\*|###|####/g, '')}
+                        </h3>
+                      );
+                    }
+                    if (line.trim() === '') return <div key={idx} className="h-4" />;
+                    return (
+                      <p key={idx} className="mb-4 text-gray-600">
+                        {line}
+                      </p>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Action Suggestion */}
+              <div className="mt-12 p-8 bg-brand-50 rounded-[35px] border border-brand-100 flex flex-col sm:flex-row items-center gap-6">
+                <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-brand-primary shadow-sm flex-shrink-0">
+                  <Target className="w-8 h-8" />
+                </div>
+                <div className="flex-1 text-center sm:text-left">
+                  <p className="text-brand-900 font-black text-sm mb-1 uppercase tracking-tight">Sıradaki Adım</p>
+                  <p className="text-brand-700/70 text-xs font-medium">Bu analize uygun üniversiteleri ve bölümleri incelemeye ne dersin?</p>
+                </div>
+                <button 
+                  onClick={() => onNavigate(View.Universities)}
+                  className="bg-brand-primary text-white p-4 rounded-2xl hover:bg-brand-700 transition-all shadow-lg shadow-brand-200 active:scale-95"
+                >
+                  <ArrowRight className="w-6 h-6" />
+                </button>
+              </div>
             </div>
           </div>
-          <div className="prose prose-indigo max-w-none text-gray-700 leading-relaxed whitespace-pre-wrap p-8 bg-gray-50 rounded-[35px] border border-gray-100 font-medium">
-            {analysis}
-          </div>
+
+          {/* Reset Button */}
           <button 
             onClick={reset}
-            className="w-full flex items-center justify-center gap-3 text-brand-primary hover:bg-brand-50 font-black py-5 rounded-[22px] transition-all border-2 border-dashed border-brand-200 uppercase tracking-widest text-xs"
+            className="w-full flex items-center justify-center gap-3 text-gray-400 hover:text-brand-primary hover:bg-brand-50 font-black py-6 rounded-[30px] transition-all border-2 border-dashed border-gray-100 hover:border-brand-primary uppercase tracking-[0.2em] text-[10px]"
           >
-            <RefreshCcw className="w-4 h-4" /> Yeni Analiz Başlat
+            <RefreshCcw className="w-4 h-4" /> Yeni Bir Analiz Başlat
           </button>
         </div>
       )}

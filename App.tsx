@@ -25,7 +25,6 @@ import ResourcesView from './views/ResourcesView';
 import ProfileView from './views/ProfileView';
 import PremiumView from './views/PremiumView';
 
-const LOGO_URL = 'https://i.ibb.co/3WfK91X/guidely-logo.png';
 const USER_AVATAR = 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=200&h=200';
 
 const App: React.FC = () => {
@@ -61,7 +60,7 @@ const App: React.FC = () => {
   const renderView = () => {
     switch (activeView) {
       case View.Home: return <HomeView onNavigate={setActiveView} />;
-      case View.Tests: return <TestsView onComplete={handleTestComplete} />;
+      case View.Tests: return <TestsView onComplete={handleTestComplete} onNavigate={setActiveView} />;
       case View.Sectors: return <SectorsView savedIds={savedSectors} onToggleSave={toggleSaveSector} onSeeDetail={handleNavigateToSectorDetail} hasTestResult={!!testResult} />;
       case View.SectorDetail: return <SectorDetailView sectorId={selectedSectorId} onBack={() => setActiveView(View.Sectors)} personalityResult={testResult} />;
       case View.Universities: return <UniversitiesView followedIds={followedUniversities} onToggleFollow={toggleFollowUni} />;
@@ -74,9 +73,10 @@ const App: React.FC = () => {
           savedSectors={savedSectors}
           testResult={testResult}
           onNavigate={setActiveView}
+          onSeeSectorDetail={handleNavigateToSectorDetail}
         />
       );
-      case View.Premium: return <PremiumView />;
+      case View.Premium: return <PremiumView testResult={testResult} onNavigate={setActiveView} />;
       default: return <HomeView onNavigate={setActiveView} />;
     }
   };

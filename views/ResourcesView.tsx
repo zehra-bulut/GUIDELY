@@ -4,7 +4,7 @@ import { Resource, Comment } from '../types';
 // Added missing BookOpen import from lucide-react
 import { Search, Star, Book, MessageSquare, Send, Bookmark, BookmarkCheck, Filter, X, ChevronDown, Sparkles, BookOpen } from 'lucide-react';
 
-const initialResources: Resource[] = [
+export const initialResources: Resource[] = [
   { 
     id: 'res-1', title: 'Fizik: Modern Yaklaşımlar', subject: 'Fizik', style: 'İspat Odaklı', rating: 4.8, difficulty: 4, reviewCount: 2,
     comments: [

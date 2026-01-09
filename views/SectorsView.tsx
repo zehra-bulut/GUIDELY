@@ -1,7 +1,12 @@
 
 import React, { useState, useMemo } from 'react';
 import { Sector } from '../types';
-import { Search, TrendingUp, DollarSign, Activity, Users, Info, Bookmark, BookmarkCheck, Filter, Sparkles, ChevronDown } from 'lucide-react';
+import { 
+  Search, TrendingUp, DollarSign, Bookmark, BookmarkCheck, 
+  Filter, Sparkles, ChevronDown, SlidersHorizontal, X, 
+  Zap, Brain, Target, BarChart3, ArrowUpDown, ArrowUp, ArrowDown,
+  Cpu, Gauge, Lightbulb
+} from 'lucide-react';
 
 export const sectors: Sector[] = [
   { 
@@ -13,7 +18,7 @@ export const sectors: Sector[] = [
     salary: '50k - 150k TL', 
     icon: '💻',
     description: 'Yazılım geliştirme, günümüz dünyasının en dinamik ve hızlı büyüyen sektörlerinden biridir. Sürekli öğrenme ve problem çözme becerisi gerektirir.',
-    hardSkills: ['Python', 'JavaScript', 'SQL', 'Git/GitHub', 'Cloud (AWS/Azure)', 'Docker'],
+    hardSkills: ['Python', 'JavaScript', 'Cloud'],
     softSkills: ['Analitik Düşünme', 'Problem Çözme', 'Ekip Çalışması', 'Zaman Yönetimi', 'Sürekli Öğrenme'],
     trends: ['Yapay Zeka Entegrasyonu', 'Bulut Bilişim', 'Düşük Kodlu Platformlar (No-Code/Low-Code)'],
     expertInsights: [
@@ -22,138 +27,114 @@ export const sectors: Sector[] = [
         name: 'Dr. Selin Ak', 
         title: 'Senior Software Engineer @ TechGiant', 
         avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200&h=200', 
+        videoUrl: 'https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
         comment: 'Bu sektörde başarının anahtarı asla "öğrendim" dememektir. Teknoloji her 6 ayda bir değişiyor.',
         fieldOfWork: 'Yazılım Mühendisliği',
         experienceYears: 12,
-        bio: 'Selin Ak, büyük ölçekli dağıtık sistemler üzerinde uzmanlaşmış bir mühendistir. Son 5 yıldır AI destekli yazılım süreçleri üzerine çalışmaktadır.',
-        videoUrl: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
+        bio: 'Büyük ölçekli dağıtık sistemler üzerinde uzmanlaşmış bir mühendisim. Kariyerim boyunca dünya çapındaki teknoloji devlerinde kritik altyapı projelerini yönettim.',
         scoringSummary: [
           { label: 'İş Tatmini', score: 9 },
           { label: 'Giriş Zorluğu', score: 8 },
-          { label: 'Gelecek Potansiyeli', score: 10 },
-          { label: 'Sosyal Denge', score: 6 }
+          { label: 'Gelecek Potansiyeli', score: 10 }
+        ]
+      },
+      { 
+        id: 'ex-2', 
+        name: 'Mert Kaan Er', 
+        title: 'Full Stack Architect', 
+        avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200&h=200', 
+        videoUrl: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
+        comment: 'Sadece kod yazmak yetmez, yazdığınız kodun işletme değerini anlamanız gerekir.',
+        fieldOfWork: 'Sistem Mimarisi',
+        experienceYears: 15,
+        bio: 'Avrupa çapında birçok e-ticaret platformunun altyapısını kurdum ve modern yazılım mimarileri üzerine danışmanlık vermekteyim.',
+        scoringSummary: [
+          { label: 'Yaratıcılık', score: 8 },
+          { label: 'Maaş Düzeyi', score: 9 },
+          { label: 'Uzaktan Çalışma', score: 10 }
         ]
       }
     ],
     specializations: [
       { 
         title: 'Frontend Developer', 
-        description: 'Web sitelerinin kullanıcı tarafından görülen arayüzlerini ve etkileşimlerini geliştirir.', 
-        workplace: 'Teknoloji şirketleri, ajanslar veya freelance.', 
-        jobFindingEase: 8, 
-        growthPotential: 7, 
-        internationalOpportunities: 9,
-        workplaceDistribution: [
-          { category: 'Global Teknoloji Devleri', percentage: 40, companies: ['Google', 'Meta', 'Netflix'] },
-          { category: 'Yerli Unicornlar & Startuplar', percentage: 45, companies: ['Getir', 'Dream Games', 'Insider'] },
-          { category: 'Dijital Ajanslar', percentage: 15, companies: ['Sherpa', 'Userspots'] }
-        ]
+        description: 'Web sitelerinin kullanıcı tarafından görülen arayüzlerini ve etkileşimli bileşenlerini geliştirir.', 
+        workplace: 'Teknoloji şirketleri, dijital ajanslar, e-ticaret platformları.', 
+        jobFindingEase: 9, 
+        growthPotential: 8, 
+        internationalOpportunities: 9
       },
       { 
         title: 'Backend Developer', 
-        description: 'Sunucu tarafındaki mantığı, veritabanı yönetimini ve API sistemlerini kurar.', 
-        workplace: 'Yazılım evleri, büyük kurumsal firmalar, bankalar.', 
-        jobFindingEase: 9, 
-        growthPotential: 8, 
-        internationalOpportunities: 9,
-        workplaceDistribution: [
-          { category: 'Bankacılık & Finans', percentage: 50, companies: ['Yapı Kredi', 'Garanti BBVA', 'Papara'] },
-          { category: 'E-Ticaret Platformları', percentage: 35, companies: ['Trendyol', 'Hepsiburada', 'Amazon'] },
-          { category: 'Bulut Bilişim Servisleri', percentage: 15, companies: ['AWS', 'Azure'] }
-        ]
-      },
-      { 
-        title: 'Full Stack Developer', 
-        description: 'Hem arayüz hem de sunucu tarafında uzmanlaşarak projeyi uçtan uca yönetir.', 
-        workplace: 'Startuplar, ürün odaklı teknoloji firmaları.', 
+        description: 'Sunucu tarafı mantığını, veritabanı yönetimini ve API entegrasyonlarını yönetir.', 
+        workplace: 'Banka altyapıları, büyük ölçekli yazılım evleri, bulut bilişim şirketleri.', 
         jobFindingEase: 9, 
         growthPotential: 9, 
-        internationalOpportunities: 9,
-        workplaceDistribution: [
-          { category: 'Erken Aşama Startuplar', percentage: 60, companies: ['Y Combinator Startups', 'Peak Games'] },
-          { category: 'SaaS Şirketleri', percentage: 30, companies: ['Atlassian', 'Slack'] },
-          { category: 'Freelance & Danışmanlık', percentage: 10, companies: ['Upwork Elite', 'Toptal'] }
-        ]
+        internationalOpportunities: 8
+      },
+      { 
+        title: 'Mobile App Developer', 
+        description: 'iOS and Android platformları için yerel veya hibrit mobil uygulamalar geliştirir.', 
+        workplace: 'Start-up\'lar, oyun stüdyoları, mobil odaklı teknoloji firmaları.', 
+        jobFindingEase: 8, 
+        growthPotential: 9, 
+        internationalOpportunities: 10
       }
     ]
   },
-  { 
-    id: 'sec-7', 
-    name: 'Elektrik Elektronik Mühendisliği', 
-    category: 'Mühendislik',
-    growth: '%18', 
-    difficulty: 'Yüksek', 
-    salary: '35k - 120k TL', 
-    icon: '⚡',
-    description: 'Elektrik, elektronik ve elektromanyetizma ile ilgili sistemlerin tasarımı, geliştirilmesi ve test edilmesi süreçlerini kapsayan temel mühendislik dalıdır.',
-    hardSkills: ['Devre Analizi', 'Sinyal İşleme', 'Mikrodenetleyiciler', 'Güç Sistemleri', 'MATLAB/Simulink', 'C/C++'],
-    softSkills: ['Karmaşık Problem Çözme', 'Eleştirel Düşünme', 'Proje Yönetimi', 'Ekip Koordinasyonu'],
-    trends: ['Akıllı Şebekeler', 'Elektrikli Araç Teknolojileri', '5G ve Ötesi Haberleşme', 'Gömülü Sistemler'],
+  {
+    id: 'sec-6',
+    name: 'Yapay Zeka Uzmanı',
+    category: 'Teknoloji',
+    growth: '%65',
+    difficulty: 'Çok Yüksek',
+    salary: '80k - 250k TL',
+    icon: '🤖',
+    description: 'Geleceğinin dünyasını inşa eden, makinelerin öğrenmesini sağlayan ileri teknoloji.',
+    hardSkills: ['Deep Learning', 'Math', 'NLP'],
+    trends: ['Üretken Yapay Zeka', 'Otonom Sistemler'],
+    expertInsights: [
+      { 
+        id: 'ex-ai-1', 
+        name: 'Doç. Dr. Ömer Aras', 
+        title: 'AI Research Director', 
+        avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=200&h=200', 
+        videoUrl: 'https://storage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4',
+        comment: 'LLM modelleri ve derin öğrenme, sadece bir trend değil; yeni bir endüstriyel devrimdir.',
+        fieldOfWork: 'Derin Öğrenme',
+        experienceYears: 14,
+        bio: 'Silikon Vadisi\'ndeki laboratuvarlarda NLP üzerine çalışmalar yürüttüm ve şu an yapay zeka araştırma projelerine liderlik etmekteyim.',
+        scoringSummary: [
+          { label: 'Akademik Derinlik', score: 10 },
+          { label: 'Gelecek Vizyonu', score: 10 },
+          { label: 'Etki Gücü', score: 9 }
+        ]
+      }
+    ],
     specializations: [
       { 
-        title: 'Sistem Mühendisi', 
-        description: 'Karmaşık mühendislik projelerinin tüm yaşam döngüsü boyunca verimli ve güvenli çalışmasını koordine eder.', 
-        workplace: 'Savunma sanayii, havacılık ve büyük üretim tesisleri.', 
+        title: 'Machine Learning Engineer', 
+        description: 'Verileri kullanarak tahmin modelleri ve algoritmalar tasarlar ve üretim sistemlerine entegre eder.', 
+        workplace: 'Yapay zeka laboratuvarları, otonom araç şirketleri, büyük veri firmaları.', 
         jobFindingEase: 7, 
-        growthPotential: 8, 
-        internationalOpportunities: 8,
-        workplaceDistribution: [
-          { category: 'Savunma Sanayii', percentage: 55, companies: ['ASELSAN', 'ROKETSAN', 'TUSAŞ'] },
-          { category: 'Havacılık & Uzay', percentage: 30, companies: ['Boeing', 'Airbus', 'SpaceX'] },
-          { category: 'Otomotiv Sistemleri', percentage: 15, companies: ['TOGG', 'Ford Otosan'] }
-        ]
+        growthPotential: 10, 
+        internationalOpportunities: 10
       },
       { 
-        title: 'Biyomedikal Mühendisliği', 
-        description: 'Sağlık alanındaki teşhis ve tedavi süreçleri için teknolojik cihazlar ve sistemler tasarlar.', 
-        workplace: 'Hastaneler, tıbbi cihaz üreticileri ve araştırma laboratuvarları.', 
+        title: 'Data Scientist', 
+        description: 'Karmaşık verilerden anlamlı içgörüler çıkararak işletmelerin stratejik kararlar almasına yardımcı olur.', 
+        workplace: 'Finans kurumları, perakende devleri, pazarlama analitiği şirketleri.', 
         jobFindingEase: 8, 
         growthPotential: 9, 
-        internationalOpportunities: 7,
-        workplaceDistribution: [
-          { category: 'Medikal Cihaz Üretimi', percentage: 60, companies: ['Siemens Healthineers', 'Philips', 'GE Healthcare'] },
-          { category: 'Özel Hastane Zincirleri', percentage: 25, companies: ['Acıbadem', 'MLP Care'] },
-          { category: 'Biyoteknoloji Startupları', percentage: 15, companies: ['Biogen', 'Moderna'] }
-        ]
+        internationalOpportunities: 9
       },
       { 
-        title: 'Telekomünikasyon Mühendisliği', 
-        description: 'Veri iletimi, kablosuz ağlar, uydu haberleşmesi ve fiber optik sistemler üzerine odaklanır.', 
-        workplace: 'GSM operatörleri, haberleşme teknolojileri şirketleri ve devlet kurumları.', 
-        jobFindingEase: 8, 
-        growthPotential: 8, 
-        internationalOpportunities: 9,
-        workplaceDistribution: [
-          { category: 'Telekom Operatörleri', percentage: 65, companies: ['Turkcell', 'Vodafone', 'Türk Telekom'] },
-          { category: 'Ağ Altyapı Sağlayıcıları', percentage: 25, companies: ['Ericsson', 'Nokia', 'Huawei'] },
-          { category: 'Düzenleyici Kurumlar', percentage: 10, companies: ['BTK', 'Türksat'] }
-        ]
-      },
-      { 
-        title: 'Kontrol ve Otomasyon', 
-        description: 'Fabrikaların ve endüstriyel sistemlerin insansız veya akıllı şekilde çalışmasını sağlayan kontrol algoritmaları kurar.', 
-        workplace: 'Otomotiv fabrikaları, robotik firmaları, üretim bantları.', 
-        jobFindingEase: 9, 
+        title: 'Computer Vision Expert', 
+        description: 'Makinelerin dijital görüntüleri ve videoları tanıması, işlemesi ve analiz etmesi üzerine çalışır.', 
+        workplace: 'Savunma sanayi, sağlık teknolojileri, güvenlik sistemleri.', 
+        jobFindingEase: 6, 
         growthPotential: 9, 
-        internationalOpportunities: 7,
-        workplaceDistribution: [
-          { category: 'Endüstriyel Otomasyon', percentage: 50, companies: ['ABB', 'Schneider Electric', 'Rockwell'] },
-          { category: 'Robotik & AI Lab', percentage: 30, companies: ['Boston Dynamics', 'Fanuc'] },
-          { category: 'Gıda & İlaç Üretimi', percentage: 20, companies: ['Unilever', 'Nestle'] }
-        ]
-      },
-      { 
-        title: 'Güç Sistemleri Mühendisi', 
-        description: 'Elektrik enerjisinin üretimi, iletimi ve dağıtımı süreçlerini yönetir; enerji verimliliği üzerine çalışır.', 
-        workplace: 'Enerji santralleri, elektrik dağıtım şirketleri, yenilenebilir enerji tesisleri.', 
-        jobFindingEase: 8, 
-        growthPotential: 7, 
-        internationalOpportunities: 6,
-        workplaceDistribution: [
-          { category: 'Enerji Üretim & Dağıtım', percentage: 70, companies: ['EUAŞ', 'Enerjisa', 'CK Enerji'] },
-          { category: 'Yenilenebilir Enerji', percentage: 20, companies: ['Zorlu Enerji', 'Limak Enerji'] },
-          { category: 'Ağır Sanayi Tesisleri', percentage: 10, companies: ['Erdemir', 'İsdemir'] }
-        ]
+        internationalOpportunities: 9
       }
     ]
   },
@@ -165,101 +146,51 @@ export const sectors: Sector[] = [
     difficulty: 'Çok Yüksek', 
     salary: '40k - 120k TL', 
     icon: '🏥',
-    description: 'İnsan hayatına dokunan, teknik bilgiyle yüksek empatinin birleştiği bir alan. Yaşlanan nüfus ve teknolojik gelişmelerle önemi artıyor.',
-    hardSkills: ['Anatomi', 'Teşhis Yöntemleri', 'Farmakoloji', 'Cerrahi Teknikler', 'Medikal Cihaz Kullanımı'],
-    softSkills: ['Yüksek Empati', 'Kriz Yönetimi', 'Hasta İletişimi', 'Etik Karar Verme', 'Dayanıklılık'],
-    trends: ['Teletıp', 'Kişiselleştirilmiş Tıp', 'Robotik Cerrahi'],
+    description: 'İnsan hayatına dokunan, teknik bilgiyle yüksek empatinin birleştiği bir alan.',
+    hardSkills: ['Anatomi', 'Teşhis', 'İletişim'],
+    trends: ['Dijital Sağlık', 'Robotik Cerrahi'],
     expertInsights: [
       { 
-        id: 'ex-2', 
-        name: 'Doç. Dr. Mert Yılmaz', 
-        title: 'Kardiyolog', 
-        avatar: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=200&h=200', 
-        comment: 'Teknoloji ne kadar ilerlese de hastayla kurduğunuz o insani bağ her zaman en önemli iyileştiricidir.',
-        fieldOfWork: 'Kardiyoloji',
-        experienceYears: 15,
-        bio: 'Mert Yılmaz, kardiyoloji alanında birçok uluslararası yayına sahip, teknoloji destekli teşhis yöntemleri üzerine uzmanlaşmış bir hekimdir.',
-        videoUrl: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+        id: 'ex-med-1', 
+        name: 'Prof. Dr. Ayşe Nur', 
+        title: 'Kardiyoloji Uzmanı', 
+        avatar: 'https://images.unsplash.com/photo-1559839734-2b71f1536783?auto=format&fit=crop&q=80&w=200&h=200', 
+        videoUrl: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
+        comment: 'Tıp eğitimi bir maratondur, asla bitmeyen bir öğrencilik sürecine hazır olmalısınız.',
+        fieldOfWork: 'Akademik Tıp',
+        experienceYears: 25,
+        bio: 'Dünya Sağlık Örgütü projelerinde danışmanlık yapmış kıdemli bir hekimim. Akademik kariyerim boyunca binlerce hekim adayı yetiştirdim.',
         scoringSummary: [
-          { label: 'Manevi Tatmin', score: 10 },
-          { label: 'Eğitim Zorluğu', score: 10 },
-          { label: 'İş Garantisi', score: 9 },
-          { label: 'Boş Zaman', score: 3 }
+          { label: 'Sosyal Fayda', score: 10 },
+          { label: 'Giriş Zorluğu', score: 10 },
+          { label: 'Statü', score: 9 }
         ]
       }
     ],
     specializations: [
       { 
-        title: 'Pratisyen Hekim', 
-        description: 'Birinci basamak sağlık hizmeti sunan genel tıp doktorudur.', 
-        workplace: 'Aile sağlığı merkezleri, acil servisler.', 
-        jobFindingEase: 10, 
-        growthPotential: 5, 
-        internationalOpportunities: 7,
-        workplaceDistribution: [
-          { category: 'Kamu Sağlık Kurumları', percentage: 80, companies: ['Sağlık Bakanlığı Hastaneleri', 'ASM'] },
-          { category: 'Özel Sağlık Kabinleri', percentage: 20, companies: ['Özel Poliklinikler'] }
-        ]
+        title: 'Genel Cerrahi', 
+        description: 'Ameliyat gerektiren hastalıkların teşhisi ve cerrahi tedavisi üzerine uzmanlaşmıştır.', 
+        workplace: 'Devlet hastaneleri, özel klinikler, üniversite hastaneleri.', 
+        jobFindingEase: 9, 
+        growthPotential: 7, 
+        internationalOpportunities: 7
       },
       { 
-        title: 'Uzman Cerrah', 
-        description: 'Belirli bir alanda cerrahi operasyonlar gerçekleştiren doktordur.', 
-        workplace: 'Kamu ve özel hastaneler.', 
-        jobFindingEase: 9, 
-        growthPotential: 8, 
-        internationalOpportunities: 8,
-        workplaceDistribution: [
-          { category: 'Üniversite Hastaneleri', percentage: 40, companies: ['Çapa Tıp', 'Hacettepe Tıp'] },
-          { category: 'Özel Hastane Grupları', percentage: 40, companies: ['Memorial', 'Medicana'] },
-          { category: 'Yurt Dışı Klinikleri', percentage: 20, companies: ['Mayo Clinic', 'Charité'] }
-        ]
-      }
-    ]
-  },
-  { 
-    id: 'sec-3', 
-    name: 'Yenilenebilir Enerji', 
-    category: 'Mühendislik',
-    growth: '%40', 
-    difficulty: 'Orta', 
-    salary: '35k - 90k TL', 
-    icon: '🌱',
-    description: 'Sürdürülebilir bir gelecek için kritik öneme sahip, mühendislik ve çevre bilimlerinin kesişim noktası.',
-    hardSkills: ['Güneş/Rüzgar Teknolojileri', 'Elektrik Devreleri', 'Enerji Depolama', 'CAD Yazılımları', 'Çevresel Mevzuat'],
-    softSkills: ['Sürekli Merak', 'Etik Yaklaşım', 'Kompleks Problem Çözme', 'Matematiksel Düşünme'],
-    trends: ['Yeşil Hidrojen', 'Güneş Paneli Verimliliği', 'Enerji Depolama Çözümleri'],
-    expertInsights: [
-      { 
-        id: 'ex-3', 
-        name: 'Elif Can', 
-        title: 'Enerji Stratejisti', 
-        avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=200&h=200', 
-        comment: 'Gelecek yeşil enerjide. Bu alandaki inovasyon hızı inanılmaz bir seviyede.',
-        fieldOfWork: 'Enerji Politikaları',
-        experienceYears: 10,
-        bio: 'Elif, sürdürülebilir enerji dönüşümü konusunda devletlere ve büyük şirketlere stratejik danışmanlık vermektedir.',
-        videoUrl: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
-        scoringSummary: [
-          { label: 'Global Vizyon', score: 10 },
-          { label: 'Maaş Artışı', score: 7 },
-          { label: 'Ar-Ge Payı', score: 9 },
-          { label: 'İstikrar', score: 8 }
-        ]
-      }
-    ],
-    specializations: [
-      { 
-        title: 'Güneş Enerjisi Uzmanı', 
-        description: 'PV sistem tasarımı ve kurulumu üzerine odaklanır.', 
-        workplace: 'Enerji firmaları, danışmanlık.', 
-        jobFindingEase: 9, 
+        title: 'Genetik Danışmanı', 
+        description: 'Kalıtımsal hastalıklar ve riskler konusunda bireylere ve ailelere bilgi ve destek sağlar.', 
+        workplace: 'Genetik merkezleri, araştırma enstitüleri, büyük hastaneler.', 
+        jobFindingEase: 6, 
         growthPotential: 9, 
-        internationalOpportunities: 8,
-        workplaceDistribution: [
-          { category: 'Enerji Yatırım Firmaları', percentage: 60, companies: ['SolarEdge', 'BayWa r.e.', 'Kalyon Enerji'] },
-          { category: 'EPC (Mühendislik-Tedarik)', percentage: 30, companies: ['Asunim', 'Kontek'] },
-          { category: 'Kamu Enerji Kurulları', percentage: 10, companies: ['EPDK'] }
-        ]
+        internationalOpportunities: 9
+      },
+      { 
+        title: 'Radyoloji Uzmanı', 
+        description: 'MR, Tomografi gibi tıbbi görüntüleme tekniklerini kullanarak teşhis koyar.', 
+        workplace: 'Görüntüleme merkezleri, onkoloji klinikleri, acil servisler.', 
+        jobFindingEase: 8, 
+        growthPotential: 8, 
+        internationalOpportunities: 8
       }
     ]
   },
@@ -271,41 +202,127 @@ export const sectors: Sector[] = [
     difficulty: 'Yüksek',
     salary: '45k - 180k TL',
     icon: '📈',
-    description: 'Küresel ekonominin kalbi. Analitik zeka ve piyasa takibi ile servet yönetimi ve yatırım stratejileri üzerine odaklanır.',
-    hardSkills: ['Finansal Modelleme', 'Varlık Yönetimi', 'Ekonomi', 'Excel/VBA', 'Risk Analizi'],
-    softSkills: ['Stratejik Düşünme', 'Duygusal Dayanıklılık', 'Karar Verme', 'Müzakere'],
-    trends: ['Blockchain Finansı', 'ESG Yatırımları', 'Algoritmik Trading'],
+    description: 'Küresel ekonominin kalbi. Analitik zeka ve piyasa takibi odaklı.',
+    hardSkills: ['Analiz', 'Strateji', 'Modelleme'],
+    trends: ['Blockchain', 'Fintech Devrimi'],
     expertInsights: [
-      {
-        id: 'ex-4',
-        name: 'Kerem Atakan',
-        title: 'Portföy Yöneticisi',
-        avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200&h=200',
-        comment: 'Rakamlar yalan söylemez, ama onları nasıl okuduğunuz her şeyi değiştirir.',
+      { 
+        id: 'ex-fin-1', 
+        name: 'Selçuk Bak', 
+        title: 'Investment Banker', 
+        avatar: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=200&h=200', 
+        videoUrl: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
+        comment: 'Piyasa dalgalanmalarını okumak bir sanattır. Veri okuryazarlığı en büyük silahınız olacak.',
         fieldOfWork: 'Yatırım Bankacılığı',
         experienceYears: 18,
-        bio: 'Kerem, son 10 yıldır uluslararası fonlarda risk yönetimi ve varlık tahsisi üzerine uzmanlaşmıştır.',
-        videoUrl: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4',
+        bio: 'Global fonların yönetimi ve halka arz süreçlerinde liderlik yaptım. Uluslararası piyasalarda yatırım stratejileri üzerine uzmanlaştım.',
         scoringSummary: [
-          { label: 'Maaş Potansiyeli', score: 10 },
-          { label: 'Zihinsel Efor', score: 9 },
-          { label: 'Global Kariyer', score: 9 }
+          { label: 'Maaş', score: 10 },
+          { label: 'Rekabet', score: 10 },
+          { label: 'Network', score: 9 }
         ]
       }
     ],
     specializations: [
       { 
-        title: 'Yatırım Danışmanı', 
-        description: 'Müşterilere finansal hedefleri doğrultusunda rehberlik eder.', 
-        workplace: 'Bankalar, yatırım şirketleri.', 
+        title: 'Portfolio Manager', 
+        description: 'Yatırımcıların varlıklarını piyasa koşullarına göre yöneterek getiri maksimizasyonu sağlar.', 
+        workplace: 'Portföy yönetim şirketleri, aile ofisleri, özel bankalar.', 
+        jobFindingEase: 6, 
+        growthPotential: 8, 
+        internationalOpportunities: 9
+      },
+      { 
+        title: 'Risk Analyst', 
+        description: 'Finansal piyasalardaki veya operasyonel süreçlerdeki riskleri belirler ve raporlar.', 
+        workplace: 'Bankalar, sigorta şirketleri, enerji firmaları.', 
+        jobFindingEase: 8, 
+        growthPotential: 7, 
+        internationalOpportunities: 8
+      },
+      { 
+        title: 'Fintech Developer', 
+        description: 'Finansal hizmetleri teknoloji ile birleştiren yazılımlar ve platformlar geliştirir.', 
+        workplace: 'Start-up\'lar, dijital bankalar, blockchain firmaları.', 
+        jobFindingEase: 9, 
+        growthPotential: 10, 
+        internationalOpportunities: 10
+      }
+    ]
+  },
+  { 
+    id: 'sec-7', 
+    name: 'Elektrik Elektronik', 
+    category: 'Mühendislik',
+    growth: '%18', 
+    difficulty: 'Yüksek', 
+    salary: '35k - 120k TL', 
+    icon: '⚡',
+    description: 'Elektrik, elektronik ve elektromanyetizma ile ilgili sistemlerin tasarımı ve geliştirilmesi.',
+    hardSkills: ['Devre Tasarımı', 'Sinyal İşleme', 'PCB'],
+    trends: ['5G Teknolojileri', 'Akıllı Şehirler'],
+    specializations: [
+      { 
+        title: 'Embedded Systems Engineer', 
+        description: 'Cihazların içindeki gömülü yazılımları ve mikroişlemci tabanlı donanımları tasarlar.', 
+        workplace: 'Otomotiv sektörü, beyaz eşya üreticileri, savunma sanayi.', 
+        jobFindingEase: 9, 
+        growthPotential: 8, 
+        internationalOpportunities: 9
+      },
+      { 
+        title: 'Telecommunications Expert', 
+        description: 'Kablosuz iletişim sistemleri, ağ protokolleri ve uydu teknolojileri üzerinde çalışır.', 
+        workplace: 'GSM operatörleri, haberleşme şirketleri, uydu merkezleri.', 
         jobFindingEase: 7, 
         growthPotential: 8, 
-        internationalOpportunities: 8,
-        workplaceDistribution: [
-          { category: 'Yatırım Bankacılığı', percentage: 50, companies: ['Goldman Sachs', 'Morgan Stanley', 'QNB Finansinvest'] },
-          { category: 'Portföy Yönetimi', percentage: 40, companies: ['BlackRock', 'İstanbul Portföy'] },
-          { category: 'Varlık Yönetimi', percentage: 10, companies: ['Hedge Funds'] }
-        ]
+        internationalOpportunities: 8
+      },
+      { 
+        title: 'Power Systems Engineer', 
+        description: 'Elektrik üretimi, iletimi ve dağıtımı sistemlerinin verimliliği üzerine odaklanır.', 
+        workplace: 'Enerji santralleri, elektrik dağıtım şirketleri, ağır sanayi tesisleri.', 
+        jobFindingEase: 8, 
+        growthPotential: 7, 
+        internationalOpportunities: 7
+      }
+    ]
+  },
+  { 
+    id: 'sec-3', 
+    name: 'Yenilenebilir Enerji', 
+    category: 'Mühendislik',
+    growth: '%40', 
+    difficulty: 'Orta', 
+    salary: '35k - 90k TL', 
+    icon: '🌱',
+    description: 'Sürdürülebilir bir gelecek için kritik öneme sahip mühendislik alanı.',
+    hardSkills: ['Solar Panel', 'Enerji Depolama', 'CAD'],
+    trends: ['Yeşil Hidrojen', 'Karbon Yakalama'],
+    specializations: [
+      { 
+        title: 'Solar Energy Specialist', 
+        description: 'Güneş paneli tarlaları ve bireysel sistemlerin kurulumu, bakımı ve tasarımı.', 
+        workplace: 'Enerji firmaları, inşaat şirketleri, danışmanlık ofisleri.', 
+        jobFindingEase: 8, 
+        growthPotential: 9, 
+        internationalOpportunities: 8
+      },
+      { 
+        title: 'Wind Turbine Designer', 
+        description: 'Rüzgar enerjisi sistemleri için türbin kanatları ve jeneratör mekanizmaları tasarlar.', 
+        workplace: 'Üretim tesisleri, rüzgar çiftlikleri, Ar-Ge merkezleri.', 
+        jobFindingEase: 6, 
+        growthPotential: 10, 
+        internationalOpportunities: 9
+      },
+      { 
+        title: 'Battery Storage Expert', 
+        description: 'Yenilenebilir enerjinin depolanması için yeni nesil batarya teknolojileri geliştirir.', 
+        workplace: 'Batarya fabrikaları, elektrikli araç üreticileri, teknoloji devleri.', 
+        jobFindingEase: 7, 
+        growthPotential: 10, 
+        internationalOpportunities: 10
       }
     ]
   },
@@ -317,87 +334,33 @@ export const sectors: Sector[] = [
     difficulty: 'Orta',
     salary: '30k - 100k TL',
     icon: '🎨',
-    description: 'Kullanıcıların dijital dünyadaki deneyimini tasarlayan, estetik ve fonksiyonelliği birleştiren modern bir alan.',
-    hardSkills: ['Figma', 'Adobe Suite', 'Prototipleme', 'Kullanıcı Araştırması', 'Görsel Hiyerarşi'],
-    softSkills: ['Empati', 'Yaratıcılık', 'Eleştirel Düşünme', 'Kullanıcı Odaklılık'],
-    trends: ['AI Destekli Tasarım', '3D UI', 'No-Code Tasarım Araçları'],
-    expertInsights: [
-      {
-        id: 'ex-5',
-        name: 'Selin Gökdeniz',
-        title: 'UX Design Lead',
-        avatar: 'https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&q=80&w=200&h=200',
-        comment: 'Tasarım sadece nasıl göründüğü değil, nasıl hissettirdiğidir.',
-        fieldOfWork: 'Kullanıcı Deneyimi',
-        experienceYears: 9,
-        bio: 'Selin, birçok global appin arayüz ve deneyim süreçlerini yönetmiş ödüllü bir tasarımcıdır.',
-        videoUrl: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4',
-        scoringSummary: [
-          { label: 'Yaratıcılık', score: 10 },
-          { label: 'Esnek Çalışma', score: 9 },
-          { label: 'Sektör Hızı', score: 8 }
-        ]
-      }
-    ],
+    description: 'Kullanıcıların dijital dünyadaki deneyimini tasarlayan yaratıcı alan.',
+    hardSkills: ['Figma', 'User Research', 'HTML/CSS'],
+    trends: ['AI Tasarım Araçları', 'Kapsayıcı Tasarım'],
     specializations: [
       { 
-        title: 'UX Designer', 
-        description: 'Kullanıcı yolculuklarını ve etkileşimleri tasarlar.', 
-        workplace: 'Teknoloji firmaları, ajanslar.', 
-        jobFindingEase: 8, 
+        title: 'UX Researcher', 
+        description: 'Kullanıcı davranışlarını analiz ederek dijital ürünlerin işlevselliğini artıracak stratejiler belirler.', 
+        workplace: 'Yazılım şirketleri, bankalar, büyük ölçekli start-up\'lar.', 
+        jobFindingEase: 7, 
         growthPotential: 8, 
-        internationalOpportunities: 9,
-        workplaceDistribution: [
-          { category: 'Ürün Odaklı Teknoloji Şirketleri', percentage: 70, companies: ['Spotify', 'Airbnb', 'Peak'] },
-          { category: 'Kullanıcı Deneyimi Ajansları', percentage: 20, companies: ['Fjord', 'Frog Design'] },
-          { category: 'Freelance & Danışmanlık', percentage: 10, companies: ['Independent'] }
-        ]
-      }
-    ]
-  },
-  {
-    id: 'sec-6',
-    name: 'Yapay Zeka Uzmanlığı',
-    category: 'Teknoloji',
-    growth: '%65',
-    difficulty: 'Çok Yüksek',
-    salary: '80k - 250k TL',
-    icon: '🤖',
-    description: 'Geleceğin dünyasını inşa eden, makinelerin öğrenmesini ve karar vermesini sağlayan en ileri teknoloji alanı.',
-    hardSkills: ['Machine Learning', 'Deep Learning', 'PyTorch/TensorFlow', 'Veri Bilimi', 'NLP'],
-    softSkills: ['Sürekli Merak', 'Etik Yaklaşım', 'Kompleks Problem Çözme', 'Matematiksel Düşünme'],
-    trends: ['Generative AI', 'Otonom Sistemler', 'AI Etiği ve Güvenliği'],
-    expertInsights: [
-      {
-        id: 'ex-6',
-        name: 'Dr. Berk Erdem',
-        title: 'AI Researcher',
-        avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200&h=200',
-        comment: 'AI artık bir araç değil, yeni bir düşünme biçimidir.',
-        fieldOfWork: 'Yapay Sinir Ağları',
-        experienceYears: 11,
-        bio: 'Berk, akademik kariyerini AI ve insan etkileşimi üzerine kurmuş, birçok patent sahibi bir araştırmacıdır.',
-        videoUrl: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4',
-        scoringSummary: [
-          { label: 'Gelecek Vizyonu', score: 10 },
-          { label: 'Maddi Getiri', score: 10 },
-          { label: 'Giriş Bariyeri', score: 10 }
-        ]
-      }
-    ],
-    specializations: [
+        internationalOpportunities: 9
+      },
       { 
-        title: 'NLP Engineer', 
-        description: 'Dil işleme modelleri üzerine uzmanlaşır.', 
-        workplace: 'Teknoloji devleri, AI girişimleri.', 
-        jobFindingEase: 9, 
-        growthPotential: 10, 
-        internationalOpportunities: 10,
-        workplaceDistribution: [
-          { category: 'Yapay Zeka Laboratuvarları', percentage: 50, companies: ['OpenAI', 'DeepMind', 'Anthropic'] },
-          { category: 'Kurumsal AI Departmanları', percentage: 40, companies: ['Microsoft Research', 'Meta AI'] },
-          { category: 'Akademik Araştırma', percentage: 10, companies: ['Stanford AI', 'MIT CSAIL'] }
-        ]
+        title: 'UI/Visual Designer', 
+        description: 'Uygulamaların ve web sitelerinin estetik, renk ve tipografi gibi görsel unsurlarını tasarlar.', 
+        workplace: 'Tasarım ajansları, reklam şirketleri, ürün odaklı teknoloji firmaları.', 
+        jobFindingEase: 8, 
+        growthPotential: 7, 
+        internationalOpportunities: 8
+      },
+      { 
+        title: 'Motion Designer', 
+        description: 'Arayüz etkileşimleri, animasyonlar ve videolar için hareketli grafikler oluşturur.', 
+        workplace: 'Oyun stüdyoları, medya kuruluşları, post-prodüksiyon evleri.', 
+        jobFindingEase: 6, 
+        growthPotential: 9, 
+        internationalOpportunities: 9
       }
     ]
   }
@@ -410,79 +373,235 @@ interface Props {
   hasTestResult: boolean;
 }
 
+type SortOption = 'default' | 'salary' | 'growth' | 'compatibility';
+
 const SectorsView: React.FC<Props> = ({ savedIds, onToggleSave, onSeeDetail, hasTestResult }) => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [sortOrder, setSortOrder] = useState<'default' | 'growth' | 'salary'>('default');
   const [selectedCategory, setSelectedCategory] = useState<string>('Hepsi');
+  const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
+  
+  // Advanced Filter States
+  const [minGrowth, setMinGrowth] = useState(0);
+  const [minSalary, setMinSalary] = useState(0);
+  const [selectedDifficulties, setSelectedDifficulties] = useState<string[]>([]);
+  const [onlySaved, setOnlySaved] = useState(false);
+  const [minCompatibility, setMinCompatibility] = useState(0);
+  const [sortBy, setSortBy] = useState<SortOption>('default');
 
   const categories = ['Hepsi', 'Teknoloji', 'Sağlık', 'Finans', 'Yaratıcı', 'Mühendislik'];
+  const difficulties = ['Orta', 'Yüksek', 'Çok Yüksek'];
 
-  const filteredSectors = useMemo(() => {
+  const getMinSalaryValue = (salaryStr: string) => {
+    const match = salaryStr.match(/(\d+)k/);
+    return match ? parseInt(match[1]) : 0;
+  };
+
+  const getGrowthValue = (growthStr: string) => {
+    return parseInt(growthStr.replace('%', ''));
+  };
+
+  const getMockScore = (sectorName: string) => {
+    const testResult = localStorage.getItem('guidely_test_result');
+    if (!testResult) return 0;
+    let hash = 0;
+    const str = sectorName + testResult;
+    for (let i = 0; i < str.length; i++) {
+      hash = str.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    return Math.abs(65 + (hash % 31));
+  };
+
+  const filteredAndSortedSectors = useMemo(() => {
     let result = sectors.filter(s => {
       const matchesSearch = s.name.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesCategory = selectedCategory === 'Hepsi' || s.category === selectedCategory;
-      return matchesSearch && matchesCategory;
+      const matchesGrowth = getGrowthValue(s.growth) >= minGrowth;
+      const matchesSalary = getMinSalaryValue(s.salary) >= minSalary;
+      const matchesDifficulty = selectedDifficulties.length === 0 || selectedDifficulties.includes(s.difficulty);
+      const matchesSaved = !onlySaved || savedIds.includes(s.id);
+      const matchesAI = !hasTestResult || getMockScore(s.name) >= minCompatibility;
+
+      return matchesSearch && matchesCategory && matchesGrowth && matchesSalary && matchesDifficulty && matchesSaved && matchesAI;
     });
-    
-    if (sortOrder === 'growth') {
-      result = [...result].sort((a, b) => parseInt(b.growth) - parseInt(a.growth));
-    } else if (sortOrder === 'salary') {
-      result = [...result].sort((a, b) => {
-        const getVal = (s: string) => parseInt(s.split('-')[1]?.trim().replace('k', '') || s.split(' ')[0].replace('k', ''));
-        return getVal(b.salary) - getVal(a.salary);
-      });
+
+    if (sortBy === 'salary') {
+      result.sort((a, b) => getMinSalaryValue(b.salary) - getMinSalaryValue(a.salary));
+    } else if (sortBy === 'growth') {
+      result.sort((a, b) => getGrowthValue(b.growth) - getGrowthValue(a.growth));
+    } else if (sortBy === 'compatibility' && hasTestResult) {
+      result.sort((a, b) => getMockScore(b.name) - getMockScore(a.name));
     }
+
     return result;
-  }, [searchTerm, sortOrder, selectedCategory]);
+  }, [searchTerm, selectedCategory, minGrowth, minSalary, selectedDifficulties, onlySaved, savedIds, minCompatibility, hasTestResult, sortBy]);
+
+  const resetFilters = () => {
+    setSearchTerm('');
+    setSelectedCategory('Hepsi');
+    setMinGrowth(0);
+    setMinSalary(0);
+    setSelectedDifficulties([]);
+    setOnlySaved(false);
+    setMinCompatibility(0);
+    setSortBy('default');
+  };
 
   return (
-    <div className="space-y-8 animate-in fade-in duration-700">
-      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-        <div>
-          <h1 className="text-3xl font-black text-gray-800 tracking-tight">Sektör Karşılaştırma</h1>
-          <p className="text-gray-500 font-medium">Geleceğin dünyasında seni bekleyen fırsatları keşfet.</p>
+    <div className="space-y-8 animate-in fade-in duration-700 pb-20">
+      <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+        <div className="space-y-1">
+          <h1 className="text-3xl font-black text-gray-800 tracking-tight">Sektör Keşif Merkezi</h1>
+          <p className="text-gray-500 font-medium">Potansiyeline en uygun profesyonel dünyayı filtrele.</p>
         </div>
-        <div className="flex flex-col sm:flex-row gap-4">
-          <div className="relative">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+        
+        <div className="flex flex-col sm:flex-row gap-3">
+          <div className="relative group">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 group-focus-within:text-brand-primary transition-colors" />
             <input 
               type="text" 
-              placeholder="Sektör veya beceri ara..."
-              className="pl-12 pr-6 py-3.5 bg-white border border-gray-200 rounded-2xl focus:ring-2 focus:ring-brand-primary outline-none w-full sm:w-72 shadow-sm font-medium"
+              placeholder="Sektör ara..."
+              className="pl-12 pr-6 py-4 bg-white border border-gray-200 rounded-2xl focus:ring-2 focus:ring-brand-primary outline-none w-full sm:w-64 shadow-sm font-medium transition-all"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
-          <div className="flex bg-white rounded-2xl border border-gray-100 p-1.5 shadow-sm">
-            {['growth', 'salary'].map((sort) => (
-              <button 
-                key={sort}
-                onClick={() => setSortOrder(sort as any)}
-                className={`px-5 py-2 text-[10px] font-black uppercase tracking-widest rounded-xl transition-all ${sortOrder === sort ? 'bg-brand-primary text-white shadow-lg' : 'text-gray-400 hover:bg-brand-50'}`}
-              >
-                {sort === 'growth' ? 'Büyüme' : 'Maaş'}
-              </button>
-            ))}
-            <button 
-              onClick={() => {setSortOrder('default'); setSelectedCategory('Hepsi'); setSearchTerm('');}}
-              className="px-5 py-2 text-[10px] font-black text-gray-400 hover:text-brand-primary uppercase tracking-widest"
-            >
-              Sıfırla
-            </button>
-          </div>
+          <button 
+            onClick={() => setShowAdvancedFilters(!showAdvancedFilters)}
+            className={`flex items-center justify-center gap-2 px-6 py-4 rounded-2xl font-black text-xs uppercase tracking-widest transition-all ${
+              showAdvancedFilters ? 'bg-brand-primary text-white shadow-xl shadow-brand-200' : 'bg-white border border-gray-200 text-gray-500 hover:border-brand-primary hover:text-brand-primary shadow-sm'
+            }`}
+          >
+            <SlidersHorizontal className="w-4 h-4" /> Filtrele
+          </button>
         </div>
       </div>
 
-      {/* Enhanced Category Bar */}
-      <div className="flex flex-wrap gap-2 pb-2">
+      {showAdvancedFilters && (
+        <div className="bg-white p-8 rounded-[40px] border border-gray-100 shadow-xl animate-in slide-in-from-top-4 duration-300 space-y-8 relative overflow-hidden">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            {/* Range Filters */}
+            <div className="space-y-6">
+              <div className="space-y-3">
+                <div className="flex justify-between items-center">
+                  <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest flex items-center gap-2">
+                    <TrendingUp className="w-3.5 h-3.5 text-green-500" /> Min. Büyüme
+                  </label>
+                  <span className="text-xs font-black text-brand-primary bg-brand-50 px-2 py-0.5 rounded-lg">%{minGrowth}</span>
+                </div>
+                <input 
+                  type="range" min="0" max="60" step="5"
+                  value={minGrowth} onChange={(e) => setMinGrowth(parseInt(e.target.value))}
+                  className="w-full h-1.5 bg-gray-100 rounded-lg appearance-none cursor-pointer accent-brand-primary"
+                />
+              </div>
+
+              <div className="space-y-3">
+                <div className="flex justify-between items-center">
+                  <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest flex items-center gap-2">
+                    <DollarSign className="w-3.5 h-3.5 text-brand-primary" /> Min. Maaş
+                  </label>
+                  <span className="text-xs font-black text-brand-primary bg-brand-50 px-2 py-0.5 rounded-lg">{minSalary}k TL</span>
+                </div>
+                <input 
+                  type="range" min="0" max="100" step="10"
+                  value={minSalary} onChange={(e) => setMinSalary(parseInt(e.target.value))}
+                  className="w-full h-1.5 bg-gray-100 rounded-lg appearance-none cursor-pointer accent-brand-primary"
+                />
+              </div>
+            </div>
+
+            {/* Sorting & Difficulty */}
+            <div className="space-y-6">
+              <div className="space-y-3">
+                <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest flex items-center gap-2">
+                  <ArrowUpDown className="w-3.5 h-3.5" /> Sıralama Ölçütü
+                </label>
+                <div className="flex flex-wrap gap-2">
+                  {[
+                    { id: 'default', label: 'Varsayılan' },
+                    { id: 'salary', label: 'En Yüksek Maaş' },
+                    { id: 'growth', label: 'En Hızlı Büyüme' },
+                    { id: 'compatibility', label: 'AI Uyumluluğu' }
+                  ].map(opt => (
+                    <button
+                      key={opt.id}
+                      onClick={() => setSortBy(opt.id as SortOption)}
+                      className={`px-3 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest border transition-all ${
+                        sortBy === opt.id ? 'bg-gray-800 text-white border-gray-800' : 'bg-white text-gray-400 border-gray-100 hover:border-gray-300'
+                      }`}
+                    >
+                      {opt.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+              
+              <div className="space-y-3">
+                <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest flex items-center gap-2">
+                  <Target className="w-3.5 h-3.5" /> Zorluk
+                </label>
+                <div className="flex gap-2">
+                  {difficulties.map(diff => (
+                    <button
+                      key={diff}
+                      onClick={() => setSelectedDifficulties(prev => prev.includes(diff) ? prev.filter(d => d !== diff) : [...prev, diff])}
+                      className={`px-3 py-2 rounded-xl text-[10px] font-black border transition-all ${
+                        selectedDifficulties.includes(diff) ? 'bg-brand-primary text-white border-brand-primary' : 'bg-white text-gray-400 border-gray-100 hover:border-gray-200'
+                      }`}
+                    >
+                      {diff}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Special & Reset */}
+            <div className="space-y-6">
+              {hasTestResult && (
+                <div className="p-4 bg-brand-50 rounded-2xl border border-brand-100 space-y-3">
+                  <div className="flex justify-between items-center">
+                    <label className="text-[10px] font-black text-brand-700 uppercase tracking-widest flex items-center gap-2">
+                      <Brain className="w-3.5 h-3.5" /> AI Uyumluluğu: %{minCompatibility}
+                    </label>
+                  </div>
+                  <input 
+                    type="range" min="0" max="95" step="5"
+                    value={minCompatibility} onChange={(e) => setMinCompatibility(parseInt(e.target.value))}
+                    className="w-full h-1.5 bg-brand-200 rounded-lg appearance-none cursor-pointer accent-brand-primary"
+                  />
+                </div>
+              )}
+              
+              <div className="flex flex-col gap-3">
+                <button 
+                  onClick={() => setOnlySaved(!onlySaved)}
+                  className={`flex items-center justify-center gap-2 py-3 rounded-2xl font-black text-[10px] uppercase tracking-widest border transition-all ${onlySaved ? 'bg-brand-100 border-brand-primary text-brand-primary' : 'bg-white border-gray-100 text-gray-400'}`}
+                >
+                  <Bookmark className="w-4 h-4" /> Sadece Kaydedilenler
+                </button>
+                <button 
+                  onClick={resetFilters}
+                  className="text-[10px] font-black uppercase text-red-400 hover:text-red-500 transition-colors py-2"
+                >
+                  Tüm Filtreleri Sıfırla
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Categories Bar */}
+      <div className="flex items-center justify-start gap-2 overflow-x-auto pb-2 no-scrollbar">
         {categories.map((cat) => (
           <button
             key={cat}
             onClick={() => setSelectedCategory(cat)}
-            className={`px-6 py-3 rounded-2xl text-xs font-black uppercase tracking-widest transition-all border ${
+            className={`px-6 py-3 rounded-2xl text-[11px] font-black uppercase tracking-widest transition-all whitespace-nowrap border ${
               selectedCategory === cat 
-                ? 'bg-brand-50 border-brand-primary text-brand-primary' 
-                : 'bg-white border-gray-100 text-gray-400 hover:border-brand-200 hover:text-brand-primary'
+              ? 'bg-brand-primary text-white border-brand-primary shadow-lg shadow-brand-100' 
+              : 'bg-white border-gray-100 text-gray-400 hover:border-brand-200'
             }`}
           >
             {cat}
@@ -490,53 +609,75 @@ const SectorsView: React.FC<Props> = ({ savedIds, onToggleSave, onSeeDetail, has
         ))}
       </div>
 
+      {/* Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {filteredSectors.map((sector) => (
-          <div key={sector.id} className="bg-white rounded-[40px] border border-gray-100 shadow-sm overflow-hidden hover:shadow-2xl hover:shadow-brand-500/5 transition-all duration-500 group relative border-b-8 border-b-transparent hover:border-b-brand-primary">
+        {filteredAndSortedSectors.map((sector) => (
+          <div key={sector.id} className="bg-white rounded-[40px] border border-gray-100 shadow-sm overflow-hidden hover:shadow-2xl transition-all duration-500 group relative flex flex-col">
             <button 
               onClick={() => onToggleSave(sector.id)}
-              className="absolute top-6 right-6 p-3 bg-white/80 backdrop-blur-md rounded-2xl text-gray-300 hover:text-brand-primary hover:bg-brand-50 transition-all z-10 shadow-sm"
+              className="absolute top-6 right-6 p-3 bg-white/80 backdrop-blur-md rounded-2xl text-gray-300 hover:text-brand-primary transition-all z-10"
             >
               {savedIds.includes(sector.id) ? <BookmarkCheck className="w-5 h-5 fill-current text-brand-primary" /> : <Bookmark className="w-5 h-5" />}
             </button>
-            <div className="p-8">
-              <div className="flex items-start justify-between mb-6">
-                <div className="w-16 h-16 bg-brand-50 rounded-[22px] flex items-center justify-center text-4xl shadow-inner border border-brand-100 group-hover:scale-110 transition-transform duration-500">
+            <div className="p-8 flex-1 flex flex-col">
+              {/* Header */}
+              <div className="flex items-center justify-start gap-4 mb-6">
+                <div className="w-16 h-16 bg-brand-50 rounded-[22px] flex-shrink-0 flex items-center justify-center text-4xl shadow-inner border border-brand-100">
                   {sector.icon}
                 </div>
-                <div className="flex flex-col items-end gap-2">
-                  <span className="px-3 py-1 bg-brand-100 text-brand-700 text-[9px] font-black uppercase tracking-widest rounded-lg">
+                <div className="flex flex-col items-start gap-1 overflow-hidden">
+                  <span className="px-3 py-1 bg-brand-100 text-brand-700 text-[9px] font-black uppercase rounded-lg whitespace-nowrap">
                     {sector.category}
                   </span>
-                  {parseInt(sector.growth) > 20 && (
-                    <span className="px-3 py-1 bg-green-50 text-green-600 text-[10px] font-black uppercase tracking-widest rounded-lg flex items-center gap-1.5 animate-pulse">
-                      <TrendingUp className="w-3.5 h-3.5" /> Trend
-                    </span>
+                  {hasTestResult && (
+                    <span className="text-[10px] font-black text-indigo-500 whitespace-nowrap">%{getMockScore(sector.name)} Uyum</span>
                   )}
                 </div>
               </div>
-
-              <h3 className="text-xl font-black text-gray-800 mb-3 tracking-tight group-hover:text-brand-primary transition-colors">{sector.name}</h3>
-              <p className="text-sm text-gray-500 line-clamp-2 mb-8 leading-relaxed font-medium">{sector.description}</p>
+              <h3 className="text-xl font-black text-gray-800 mb-2 tracking-tight">{sector.name}</h3>
+              <p className="text-sm text-gray-500 line-clamp-2 mb-6 font-medium leading-relaxed">{sector.description}</p>
               
-              <div className="grid grid-cols-1 gap-3 mb-8">
-                <div className="flex items-center justify-between p-3.5 bg-gray-50 rounded-2xl border border-gray-100">
-                  <span className="text-[10px] text-gray-400 font-black uppercase tracking-widest flex items-center gap-2">
-                    <TrendingUp className="w-3.5 h-3.5 text-brand-primary" /> Büyüme
-                  </span>
-                  <span className="font-black text-green-600 text-sm">{sector.growth}</span>
+              {/* Detailed Stats Grid */}
+              <div className="grid grid-cols-3 gap-2 mb-6">
+                <div className="p-3 bg-gray-50 rounded-2xl border border-gray-100 text-center">
+                  <p className="text-[8px] font-black text-gray-400 uppercase tracking-widest mb-1 flex items-center justify-center gap-1"><DollarSign className="w-2.5 h-2.5" /> Maaş</p>
+                  <p className="text-[10px] font-black text-brand-primary">{sector.salary.split(' - ')[0]}</p>
                 </div>
-                <div className="flex items-center justify-between p-3.5 bg-gray-50 rounded-2xl border border-gray-100">
-                  <span className="text-[10px] text-gray-400 font-black uppercase tracking-widest flex items-center gap-2">
-                    <DollarSign className="w-3.5 h-3.5 text-brand-primary" /> Maaş
-                  </span>
-                  <span className="font-black text-brand-primary text-sm">{sector.salary}</span>
+                <div className="p-3 bg-gray-50 rounded-2xl border border-gray-100 text-center">
+                  <p className="text-[8px] font-black text-gray-400 uppercase tracking-widest mb-1 flex items-center justify-center gap-1"><TrendingUp className="w-2.5 h-2.5" /> Büyüme</p>
+                  <p className="text-[10px] font-black text-green-600">{sector.growth}</p>
+                </div>
+                <div className="p-3 bg-gray-50 rounded-2xl border border-gray-100 text-center">
+                  <p className="text-[8px] font-black text-gray-400 uppercase tracking-widest mb-1 flex items-center justify-center gap-1"><Gauge className="w-2.5 h-2.5" /> Zorluk</p>
+                  <p className="text-[10px] font-black text-orange-500">{sector.difficulty}</p>
                 </div>
               </div>
 
+              {/* Skills Preview */}
+              {(sector.hardSkills && sector.hardSkills.length > 0) && (
+                <div className="mb-6 space-y-2">
+                  <p className="text-[9px] font-black text-gray-400 uppercase tracking-[0.1em] flex items-center gap-1.5"><Cpu className="w-3 h-3" /> Kritik Beceriler</p>
+                  <div className="flex flex-wrap gap-2">
+                    {sector.hardSkills.slice(0, 3).map(skill => (
+                      <span key={skill} className="px-2.5 py-1 bg-brand-50/50 text-brand-600 text-[9px] font-bold rounded-lg border border-brand-100">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Trend Snippet */}
+              {(sector.trends && sector.trends.length > 0) && (
+                <div className="mb-8 p-3 bg-indigo-50/30 rounded-xl border border-indigo-100/50">
+                  <p className="text-[9px] font-black text-indigo-400 uppercase tracking-widest flex items-center gap-1.5 mb-1"><Lightbulb className="w-3 h-3" /> Trend</p>
+                  <p className="text-[10px] text-gray-600 font-medium italic line-clamp-1">{sector.trends[0]}</p>
+                </div>
+              )}
+
               <button 
                 onClick={() => onSeeDetail(sector.id)}
-                className="w-full bg-brand-primary text-white py-4 rounded-[20px] text-xs font-black uppercase tracking-widest hover:bg-brand-600 transition-all shadow-xl shadow-brand-200 active:scale-[0.98]"
+                className="w-full mt-auto bg-brand-primary text-white py-4 rounded-2xl text-xs font-black uppercase tracking-widest hover:bg-brand-600 shadow-xl shadow-brand-100 active:scale-[0.98] transition-all"
               >
                 Analizi Gör
               </button>
